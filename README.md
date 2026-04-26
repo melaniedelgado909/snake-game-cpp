@@ -17,7 +17,7 @@ The project demonstrates the use of loops, functions, and vectors to manage game
 - X → Exit game
 
 # How to Compile & Run ⚙️
-# Windows (MinGW / g++)
+### Windows (MinGW / g++)
 ```bash
 g++ snake.cpp -o snake
 snake
