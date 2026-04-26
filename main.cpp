@@ -30,13 +30,54 @@ void Setup() {
 void Draw() {
     // UI Designer: Implement the nested loops to draw the map, snake, and fruit
     system("cls"); // Clears the console
-    
-    // Example: Top Wall
+
+    // Top Wall
     for (int i = 0; i < width + 2; i++) cout << "#";
     cout << endl;
 
     // Logic for middle rows, snake head ('O'), and tail ('o') goes here...
+   
+    for (int i = 0; i < height; i++) {    // Map (middle area)
+        cout << "#"; // Left wall
 
+        for (int j = 0; j < width; j++) {
+
+            // Snake head
+            if (i == y && j == x) {
+                cout << "O";
+            }
+
+            // Fruit
+            else if (i == fruitY && j == fruitX) {
+                cout << "F";
+            }
+
+            // Tail
+            else {
+                bool isTail = false;
+                for (int k = 0; k < nTail; k++) {
+                    if (tailX[k] == j && tailY[k] == i) {
+                        cout << "o";
+                        isTail = true;
+                        break;
+                    }
+                }
+
+                // Empty space
+                if (!isTail)
+                    cout << " ";
+            }
+        }
+
+        cout << "#"; // Right wall
+        cout << endl;
+    }
+
+    // Bottom Wall
+    for (int i = 0; i < width + 2; i++) cout << "#";
+    cout << endl;
+
+    // Score display
     cout << "Score: " << score << endl;
 }
 
