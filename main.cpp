@@ -17,6 +17,13 @@ eDirection dir;
 vector<int> tailX, tailY; 
 int nTail;
 
+// *Function Prototypes* (Table of Contents)
+void Setup();
+void Draw();
+void Input();
+void Logic();
+
+// *Setup*
 void Setup() {
     gameOver = false;
     dir = STOP;
@@ -27,6 +34,7 @@ void Setup() {
     score = 0;
 }
 
+// *Draw*
 void Draw() {
     // UI Designer: Implement the nested loops to draw the map, snake, and fruit
     system("cls"); // Clears the console
@@ -81,6 +89,7 @@ void Draw() {
     cout << "Score: " << score << endl;
 }
 
+// *Input*
 void Input() {
     // Physics Lead: Handle key presses (W, A, S, D)
     if (_kbhit()) {
@@ -100,9 +109,36 @@ void Logic() {
     // 2. Update head position based on 'dir'
     // 3. Check for collisions (Wall or Self)
     // 4. Check if fruit is eaten (if x == fruitX && y == fruitY)
+    switch (dir)
+    {
+    case LEFT:
+        x--;
+        break;
+
+    case RIGHT:
+        x++;
+        break;
+
+    case UP:
+        y--;
+        break;
+
+    case DOWN:
+        y++;
+        break;
+
+    default:
+        break;
+    }
+
+    // Hit wall = Game Over
+    if (x < 0 || x >= width || y < 0 || y >= height)
+        gameOver = true;
 }
 
+// The Main Loop aka the end
 int main() {
+    srand(time(0));   // randomize the fruit position
     Setup();
     while (!gameOver) {
         Draw();
@@ -110,5 +146,7 @@ int main() {
         Logic();
         Sleep(100); // Controls game speed
     }
+    cout << "Oops, Game Over! :(" << endl;
+
     return 0;
 }
